@@ -7,10 +7,10 @@ using CarRentalLibrary.entity;
 
 namespace CarRentalLibrary.dao
 {
-    // Implementation of the ICarLeaseRepository interface
+    
     public class CarLeaseRepositoryImpl : ICarLeaseRepository
     {
-        // Adds a new car to the database
+        
         public void AddCar(Car car)
         {
             using (var connection = DBConnUtil.GetConnection())
@@ -36,7 +36,7 @@ namespace CarRentalLibrary.dao
         {
             using (var connection = DBConnUtil.GetConnection())
             {
-                string query = "SELECT * FROM Lease WHERE leaseID = @LeaseID"; // Assuming leaseID is the primary key
+                string query = "SELECT * FROM Lease WHERE leaseID = @LeaseID"; 
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@LeaseID", leaseId);
@@ -63,7 +63,7 @@ namespace CarRentalLibrary.dao
         public void RemoveCar(int carID)
         {
 
-            RemoveLeasesByCarId(carID); // Remove associated leases first
+            RemoveLeasesByCarId(carID); 
 
             using (var connection = DBConnUtil.GetConnection())
             {
@@ -100,7 +100,7 @@ namespace CarRentalLibrary.dao
                                 PassengerCapacity = (int)reader["passengerCapacity"],
                                 EngineCapacity = (int)reader["engineCapacity"]
                             };
-                            availableCars.Add(car); // Add the car to the list
+                            availableCars.Add(car); 
                         }
                     }
                 }
@@ -208,7 +208,7 @@ namespace CarRentalLibrary.dao
         {
             using (var connection = DBConnUtil.GetConnection())
             {
-                // First, remove all leases associated with the customer
+                
                 string deleteLeasesQuery = "DELETE FROM Lease WHERE customerID = @CustomerID";
                 using (var command = new SqlCommand(deleteLeasesQuery, connection))
                 {
@@ -216,7 +216,7 @@ namespace CarRentalLibrary.dao
                     command.ExecuteNonQuery();
                 }
 
-                // Now, delete the customer
+                
                 string deleteCustomerQuery = "DELETE FROM Customer WHERE customerID = @CustomerID";
                 using (var command = new SqlCommand(deleteCustomerQuery, connection))
                 {

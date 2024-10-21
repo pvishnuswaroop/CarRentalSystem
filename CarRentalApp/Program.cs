@@ -16,7 +16,13 @@ namespace CarRentalApp
 
             while (running)
             {
-                Console.WriteLine("Welcome to the Car Rental System");
+                // Display the menu
+                Console.WriteLine("----------------------------------------");
+                Console.WriteLine("\tWelcome to Car Rental System");
+                Console.WriteLine("----------------------------------------");
+                Console.WriteLine();
+                Console.WriteLine("Please choose an operation:");
+                Console.WriteLine();
                 Console.WriteLine("1. Add Car");
                 Console.WriteLine("2. Remove Car");
                 Console.WriteLine("3. List Available Cars");
@@ -33,7 +39,10 @@ namespace CarRentalApp
                 Console.WriteLine("14. Record Payment");
                 Console.WriteLine("15. Run Tests");
                 Console.WriteLine("16. Exit");
-                Console.Write("Select an option: ");
+                Console.WriteLine();
+                Console.WriteLine("----------------------------------------");
+                Console.Write("Enter your choice: ");
+
 
                 int choice = Convert.ToInt32(Console.ReadLine());
 

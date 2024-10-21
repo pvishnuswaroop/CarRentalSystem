@@ -16,7 +16,7 @@ namespace CarRentalApp
 
             while (running)
             {
-                // Display the menu
+                
                 Console.WriteLine("----------------------------------------");
                 Console.WriteLine("\tWelcome to Car Rental System");
                 Console.WriteLine("----------------------------------------");

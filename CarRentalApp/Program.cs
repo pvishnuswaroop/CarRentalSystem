@@ -143,14 +143,14 @@ namespace CarRentalApp
                 Console.Write("Enter Engine Capacity: ");
                 int engineCapacity = Convert.ToInt32(Console.ReadLine());
 
-                // Create a new Car object
+                
                 Car car = new Car(vehicleID, make, model, year, dailyRate, status, passengerCapacity, engineCapacity);
-                repository.AddCar(car);  // Add the car to the repository
+                repository.AddCar(car); 
                 Console.WriteLine("Car added successfully!");
             }
             catch (Exception ex)
             {
-                // Handle any exceptions
+                
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
@@ -162,7 +162,7 @@ namespace CarRentalApp
             {
                 Console.Write("Enter Car ID to remove: ");
                 int carID = Convert.ToInt32(Console.ReadLine());
-                repository.RemoveCar(carID); // Call the repository method to remove the car
+                repository.RemoveCar(carID); 
                 Console.WriteLine("Car removed successfully!");
             }
             catch (Exception ex)
@@ -176,7 +176,7 @@ namespace CarRentalApp
         {
             var availableCars = repository.ListAvailableCars();
             Console.WriteLine("Available Cars:");
-            foreach (var car in availableCars)  // Loop through and print each car
+            foreach (var car in availableCars)  
             {
                 Console.WriteLine($"{car.VehicleID}: {car.Make} {car.Model}, Year: {car.Year}, Rate: {car.DailyRate}, Status: {car.Status}");
             }
@@ -187,7 +187,7 @@ namespace CarRentalApp
         {
             var rentedCars = repository.ListRentedCars();
             Console.WriteLine("Rented Cars:");
-            foreach (var car in rentedCars)  // Loop through and print each rented car
+            foreach (var car in rentedCars)  
             {
                 Console.WriteLine($"{car.VehicleID}: {car.Make} {car.Model}, Year: {car.Year}, Rate: {car.DailyRate}, Status: {car.Status}");
             }
@@ -200,7 +200,7 @@ namespace CarRentalApp
             {
                 Console.Write("Enter Car ID to find: ");
                 int findCarID = Convert.ToInt32(Console.ReadLine());
-                Car foundCar = repository.FindCarById(findCarID); // Call the repository method to find the car
+                Car foundCar = repository.FindCarById(findCarID); 
                 Console.WriteLine($"Found Car: {foundCar.Make} {foundCar.Model}, Year: {foundCar.Year}");
             }
             catch (CarNotFoundException ex)
@@ -247,7 +247,7 @@ namespace CarRentalApp
             {
                 Console.Write("Enter Customer ID to remove: ");
                 int customerID = Convert.ToInt32(Console.ReadLine());
-                repository.RemoveCustomer(customerID);  // Call the repository method to remove the customer
+                repository.RemoveCustomer(customerID); 
                 Console.WriteLine("Customer removed successfully!");
             }
             catch (Exception ex)
@@ -262,7 +262,7 @@ namespace CarRentalApp
         {
             var customers = repository.ListCustomers(); 
             Console.WriteLine("Customers:");
-            foreach (var customer in customers)  // Loop through and print each customer
+            foreach (var customer in customers)  
             {
                 Console.WriteLine($"{customer.CustomerID}: {customer.FirstName} {customer.LastName}, Email: {customer.Email}");
             }
@@ -275,7 +275,7 @@ namespace CarRentalApp
             {
                 Console.Write("Enter Customer ID to find: ");
                 int customerID = Convert.ToInt32(Console.ReadLine());
-                Customer foundCustomer = repository.FindCustomerById(customerID); // Call the repository method to find the customer
+                Customer foundCustomer = repository.FindCustomerById(customerID); 
                 Console.WriteLine($"Found Customer: {foundCustomer.FirstName} {foundCustomer.LastName}, Email: {foundCustomer.Email}");
             }
             catch (CustomerNotFoundException ex)
@@ -332,7 +332,7 @@ namespace CarRentalApp
         {
             var activeLeases = repository.ListActiveLeases(); 
             Console.WriteLine("Active Leases:");
-            foreach (var lease in activeLeases) // Loop through and print each lease
+            foreach (var lease in activeLeases) 
             {
                 Console.WriteLine($"Lease ID: {lease.LeaseID}, Car ID: {lease.VehicleID}, Customer ID: {lease.CustomerID}, Start: {lease.StartDate}, End: {lease.EndDate}");
             }
@@ -343,7 +343,7 @@ namespace CarRentalApp
         {
             var leaseHistory = repository.ListLeaseHistory(); 
             Console.WriteLine("Lease History:");
-            foreach (var lease in leaseHistory) // Loop through and print each lease history entry
+            foreach (var lease in leaseHistory) 
             {
                 Console.WriteLine($"Lease ID: {lease.LeaseID}, Car ID: {lease.VehicleID}, Customer ID: {lease.CustomerID}, Start: {lease.StartDate}, End: {lease.EndDate}");
             }
@@ -383,20 +383,20 @@ namespace CarRentalApp
             try
             {
                 // Test Case 1: Add Car and check if created successfully
-                int testCarID = (int)(DateTime.Now.Ticks % int.MaxValue); // Unique vehicleID
+                int testCarID = (int)(DateTime.Now.Ticks % int.MaxValue); 
                 var car = new Car(testCarID, "Tata", "Nexon", 2023, 60.00M, "available", 5, 1200);
                 repository.AddCar(car);
 
-                // Attempt to retrieve the car by its ID
+                
                 var retrievedCar = repository.FindCarById(testCarID);
                 Console.WriteLine(retrievedCar != null ? "Test Passed: Car created successfully." : "Test Failed: Car not found.");
 
                 // Test Case 2: Create a customer
-                int testCustomerID = (int)(DateTime.Now.Ticks % int.MaxValue); // Unique customerID
+                int testCustomerID = (int)(DateTime.Now.Ticks % int.MaxValue); 
                 var customer = new Customer(testCustomerID, "John", "Doe", "john.doe@example.com", "1234567890");
                 repository.AddCustomer(customer);
 
-                // Create a lease using the customer and car
+                
                 Lease lease = repository.CreateLease(testCustomerID, testCarID, DateTime.Now, DateTime.Now.AddDays(7));
                 Console.WriteLine(lease != null ? "Test Passed: Lease created successfully." : "Test Failed: Lease not created.");
 
@@ -407,7 +407,7 @@ namespace CarRentalApp
                 // Test Case 4: Test Exception Handling for Non-Existent Car
                 try
                 {
-                    repository.FindCarById(99); // This ID does not exist
+                    repository.FindCarById(99); 
                     Console.WriteLine("Test Failed: Expected exception not thrown for non-existent car.");
                 }
                 catch (CarNotFoundException)
@@ -418,7 +418,7 @@ namespace CarRentalApp
                 // Test Case 5: Test Exception Handling for Non-Existent Customer
                 try
                 {
-                    repository.FindCustomerById(999); // This ID does not exist
+                    repository.FindCustomerById(999); 
                     Console.WriteLine("Test Failed: Expected exception not thrown for non-existent customer.");
                 }
                 catch (CustomerNotFoundException)
@@ -429,7 +429,7 @@ namespace CarRentalApp
                 // Test Case 6: Test Exception Handling for Non-Existent Lease
                 try
                 {
-                    repository.FindLeaseById(98); // This ID does not exist
+                    repository.FindLeaseById(98); 
                     Console.WriteLine("Test Failed: Expected exception not thrown for non-existent lease.");
                 }
                 catch (LeaseNotFoundException)
